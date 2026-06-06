@@ -1,601 +1,1101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ether & Thread June 6</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ether and Thread</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    :root {
-      --cream:   #f5f0e8;
-      --linen:   #ede6d8;
-      --mist:    #c9c0b0;
-      --bark:    #7a6e60;
-      --ink:     #2b2620;
-      --thread:  #9e7c56;
-      --ether:   #a8b5b2;
-    }
+  :root {
+    --cream: #F5F0E8;
+    --parchment: #EDE5D4;
+    --bark: #7A6248;
+    --moss: #5A6645;
+    --clay: #A0684A;
+    --charcoal: #2E2C28;
+    --muted: #8C8070;
+    --warm-white: #FAF7F2;
+    --thread: #B89A78;
+    --sage: #8FA685;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-    html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
 
-    body {
-      background-color: var(--cream);
-      color: var(--ink);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 154, 120, 0.2);
+  }
 
-    /* ── NOISE OVERLAY ─────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.35;
-    }
+  .nav-logo img {
+    height: 54px;
+    width: auto;
+    display: block;
+    /* Replace logo.jpg in the same folder to update this */
+  }
 
-    /* ── NAV ────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.6rem 4rem;
-      background: linear-gradient(to bottom, var(--cream) 60%, transparent);
-    }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-    }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+  .nav-links a:hover { color: var(--clay); }
 
-    .nav-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bark);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+  .nav-cta {
+    background: var(--charcoal) !important;
+    color: var(--cream) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.14em !important;
+    transition: background 0.3s !important;
+  }
 
-    .nav-links a:hover { color: var(--ink); }
+  .nav-cta:hover { background: var(--bark) !important; color: var(--cream) !important; }
 
-    /* ── HERO ───────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-    }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 5rem 7rem 4rem;
-      animation: fadeUp 1.2s ease both;
-    }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
 
-    .hero-eyebrow {
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--thread);
-      margin-bottom: 1.4rem;
-    }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.08;
-      color: var(--ink);
-      margin-bottom: 2rem;
-    }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--clay);
+  }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--thread);
-    }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
 
-    .hero-sub {
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-      line-height: 1.85;
-      color: var(--bark);
-      max-width: 34ch;
-      margin-bottom: 3rem;
-    }
+  .hero h1 em { font-style: italic; color: var(--bark); }
 
-    .btn {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 1rem 2.4rem;
-      border: 1px solid var(--ink);
-      color: var(--ink);
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.35s, color 0.35s;
-      align-self: flex-start;
-    }
+  .hero-motto {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
 
-    .btn:hover { background: var(--ink); color: var(--cream); }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-    .hero-visual {
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 1.6s ease both 0.3s;
-    }
+  .btn-primary {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 0.85rem 2.2rem;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
 
-    .hero-visual-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 80% at 60% 40%, var(--ether) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 70% at 30% 70%, var(--linen) 0%, transparent 55%),
-        var(--linen);
-    }
+  .btn-primary:hover { background: var(--bark); }
 
-    /* Decorative thread lines */
-    .hero-visual svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.18;
-    }
+  .btn-secondary {
+    color: var(--bark);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--thread);
+    padding-bottom: 2px;
+    transition: color 0.3s;
+    display: inline-block;
+  }
 
-    .hero-label {
-      position: absolute;
-      bottom: 6rem;
-      left: 3rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--bark);
-      letter-spacing: 0.08em;
-      writing-mode: vertical-lr;
-      transform: rotate(180deg);
-    }
+  .btn-secondary:hover { color: var(--clay); }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 3rem;
-      right: 50%;
-      transform: translateX(50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--mist);
-      animation: pulse 2.5s ease-in-out infinite;
-    }
+  .hero-right {
+    position: relative;
+    background: var(--parchment);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .hero-scroll span { width: 1px; height: 48px; background: var(--mist); display: block; }
+  .hero-botanical {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+  }
 
-    /* ── STRIP ──────────────────────────────────────── */
-    .strip {
-      background: var(--ink);
-      color: var(--cream);
-      padding: 1rem 4rem;
-      display: flex;
-      gap: 4rem;
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-    }
+  .hero-circle {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 1px solid var(--thread);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
 
-    .strip-inner {
-      display: flex;
-      gap: 4rem;
-      animation: marquee 18s linear infinite;
-    }
+  .hero-circle-inner {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid rgba(184,154,120,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
 
-    .strip-inner span { color: var(--thread); }
+  .hero-circle-inner svg { width: 60px; height: 60px; margin-bottom: 1rem; opacity: 0.7; }
 
-    /* ── ABOUT ──────────────────────────────────────── */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 6rem;
-      padding: 9rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+  .hero-circle-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.5;
+  }
 
-    .about-aside {
-      padding-top: 0.4rem;
-    }
+  /* SECTION SHARED */
+  section { padding: 6rem 5rem; }
 
-    .section-tag {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--thread);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-    .section-tag::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--thread);
-    }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--clay);
+  }
 
-    .about-body h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 2rem;
-    }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 1.25rem;
+  }
 
-    .about-body p {
-      font-size: 0.88rem;
-      line-height: 2;
-      color: var(--bark);
-      max-width: 60ch;
-      margin-bottom: 1.2rem;
-    }
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--muted);
+    max-width: 55ch;
+  }
 
-    /* ── COLLECTION ─────────────────────────────────── */
-    .collection {
-      padding: 4rem 4rem 9rem;
-      background: var(--linen);
-    }
+  /* ABOUT */
+  .about {
+    background: var(--parchment);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
 
-    .collection-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 4rem;
-    }
+  .about-left { display: flex; flex-direction: column; gap: 2rem; }
 
-    .collection-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 300;
-    }
+  /* Owner photo — replace owner-photo.jpg in the same folder */
+  .owner-photo-wrap {
+    position: relative;
+    width: 100%;
+  }
 
-    .collection-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
+  .owner-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 1px solid rgba(184,154,120,0.25);
+  }
 
-    .card {
-      background: var(--cream);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.4s ease;
-    }
+  /* Shown when owner-photo.jpg is missing */
+  .owner-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    border: 1px dashed var(--thread);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--thread);
+    gap: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2rem;
+  }
 
-    .card:hover { transform: translateY(-6px); }
+  .owner-photo-placeholder svg { width: 48px; height: 48px; opacity: 0.5; }
 
-    .card-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      position: relative;
-      overflow: hidden;
-    }
+  .owner-photo-placeholder .placeholder-note {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: none;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
 
-    .card-img-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.6s ease;
-    }
+  .about-accent {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--thread);
+    border-radius: 50%;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
-    .card:hover .card-img-bg { transform: scale(1.04); }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+    border-left: 2px solid var(--thread);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
 
-    .card:nth-child(1) .card-img-bg {
-      background:
-        radial-gradient(ellipse 70% 90% at 50% 30%, var(--ether) 0%, var(--mist) 50%, var(--linen) 100%);
-    }
+  .thread-decoration {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
 
-    .card:nth-child(2) .card-img-bg {
-      background:
-        radial-gradient(ellipse 80% 70% at 40% 60%, #c5b8a5 0%, var(--linen) 60%, var(--mist) 100%);
-    }
+  .thread-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--thread), transparent);
+  }
 
-    .card:nth-child(3) .card-img-bg {
-      background:
-        radial-gradient(ellipse 60% 80% at 60% 40%, #b8c0bc 0%, var(--ether) 50%, var(--linen) 100%);
-    }
+  .thread-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--thread); opacity: 0.6; }
 
-    .card-body {
-      padding: 1.4rem 1.6rem;
-    }
+  /* SERVICES */
+  .services { background: var(--warm-white); }
 
-    .card-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-bottom: 0.3rem;
-    }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    .card-desc {
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--bark);
-    }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(184,154,120,0.2);
+    border: 1px solid rgba(184,154,120,0.2);
+  }
 
-    /* ── QUOTE ──────────────────────────────────────── */
-    .quote-section {
-      padding: 8rem 4rem;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+  .service-card {
+    background: var(--warm-white);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
 
-    .quote-section blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 300;
-      line-height: 1.4;
-      color: var(--ink);
-    }
+  .service-card:hover { background: var(--cream); }
 
-    .quote-section cite {
-      display: block;
-      margin-top: 2rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-style: normal;
-      color: var(--mist);
-    }
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--thread);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--bark);
+  }
 
-    /* ── FOOTER ─────────────────────────────────────── */
-    footer {
-      background: var(--ink);
-      color: var(--mist);
-      padding: 4rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 3rem;
-    }
+  .service-icon svg { width: 20px; height: 20px; }
 
-    footer .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: var(--cream);
-      margin-bottom: 1rem;
-    }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
 
-    footer p {
-      font-size: 0.75rem;
-      line-height: 1.9;
-      color: var(--bark);
-    }
+  .service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--muted); }
 
-    footer h4 {
-      font-size: 0.62rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--thread);
-      margin-bottom: 1.2rem;
-    }
+  .service-price {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--clay);
+    font-weight: 400;
+  }
 
-    footer ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
+  /* TESTIMONIALS */
+  .testimonials {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 6rem 5rem;
+  }
 
-    footer ul a {
-      font-size: 0.76rem;
-      color: var(--bark);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
+  .testimonials .section-label { color: var(--thread); }
+  .testimonials .section-label::before { background: var(--thread); }
+  .testimonials .section-title { color: var(--cream); }
 
-    footer ul a:hover { color: var(--cream); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
 
-    .footer-bottom {
-      grid-column: 1 / -1;
-      padding-top: 2.5rem;
-      border-top: 1px solid #3a3228;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: #4e4640;
-    }
+  .testimonial-card {
+    padding: 2rem;
+    border: 1px solid rgba(184,154,120,0.25);
+    position: relative;
+  }
 
-    /* ── ANIMATIONS ─────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  .testimonial-quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--thread);
+    opacity: 0.4;
+    position: absolute;
+    top: 1rem;
+    left: 1.75rem;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.85);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1; }
-    }
+  .testimonial-author {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--thread);
+  }
 
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-  </style>
+  /* EVENTS */
+  .events { background: var(--parchment); }
+
+  .events-list { margin-top: 3rem; display: flex; flex-direction: column; }
+
+  .event-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(184,154,120,0.25);
+    gap: 2rem;
+  }
+
+  .event-date-block { text-align: center; }
+
+  .event-month {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+  }
+
+  .event-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+
+  .event-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 0.25rem;
+  }
+
+  .event-meta { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.04em; }
+
+  .event-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--thread);
+    padding-bottom: 1px;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+
+  .event-link:hover { color: var(--clay); }
+
+  /* RESOURCES */
+  .resources { background: var(--warm-white); }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .resource-card {
+    border: 1px solid rgba(184,154,120,0.25);
+    padding: 1.75rem;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .resource-card:hover { border-color: var(--thread); transform: translateY(-3px); }
+
+  .resource-tag {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.75rem;
+  }
+
+  .resource-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+  }
+
+  .resource-desc { font-size: 0.84rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.25rem; }
+
+  .resource-arrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .resource-arrow::after { content: '→'; transition: transform 0.3s; }
+  .resource-card:hover .resource-arrow::after { transform: translateX(4px); }
+
+  /* CONTACT */
+  .contact {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--warm-white);
+    border: 1px solid rgba(184,154,120,0.3);
+    border-radius: 2px;
+    padding: 0.85rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--bark); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .contact-info { padding-top: 2rem; }
+
+  .contact-detail { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 2rem; }
+
+  .contact-detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+  }
+
+  .contact-detail-value { font-size: 1rem; color: var(--charcoal); font-weight: 300; }
+
+  .contact-detail-value a { color: var(--bark); text-decoration: none; border-bottom: 1px solid var(--thread); }
+  .contact-detail-value a:hover { color: var(--clay); }
+
+  .contact-divider { width: 3rem; height: 1px; background: var(--thread); margin: 2.5rem 0; }
+
+  .confirmation {
+    display: none;
+    padding: 1.5rem;
+    background: rgba(90,102,69,0.1);
+    border: 1px solid rgba(90,102,69,0.3);
+    border-radius: 2px;
+    font-size: 0.88rem;
+    color: var(--moss);
+    margin-top: 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo img { height: 44px; width: auto; display: block; opacity: 0.85; }
+
+  .footer-motto {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.45);
+    font-style: italic;
+    margin-top: 0.35rem;
+  }
+
+  .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--thread); }
+
+  .footer-copy { font-size: 0.72rem; color: rgba(245,240,232,0.3); letter-spacing: 0.05em; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 4rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 6rem 2rem 4rem; }
+    .about { grid-template-columns: 1fr; gap: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 4rem 2rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2.5rem 2rem; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Ether &amp; Thread</a>
-    <ul class="nav-links">
-      <li><a href="#">Collection2</a></li>
-      <li><a href="#">Atelier</a></li>
-      <li><a href="#">Journal</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<!-- To replace the logo: swap out logo.jpg in the same folder with your own file and keep the filename the same -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="logo.jpg" alt="Ether and Thread">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Session</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <p class="hero-eyebrow">New Collection — SS 2026</p>
-      <h1 class="hero-title">Where fabric<br>meets <em>feeling.</em></h1>
-      <p class="hero-sub">Garments conceived in stillness. Crafted with intention. Each piece carries the quiet weight of something made to last — worn by those who move through the world with care.</p>
-      <a href="#" class="btn">Explore the Collection</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Holistic Health &amp; Integrative Medicine</div>
+    <h1>Where <em>body, mind,</em> and spirit find their thread</h1>
+    <p class="hero-motto">Following the thread that connects the conscious and unconscious, providing holistic care rooted in nature, intention, and integrated healing.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Begin Your Journey</a>
+      <a class="btn-secondary" href="#services">Explore Services</a>
     </div>
-
-    <div class="hero-visual">
-      <div class="hero-visual-bg"></div>
-
-      <!-- Decorative SVG lines suggesting thread/fabric -->
-      <svg viewBox="0 0 600 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 100 0 Q 300 200 200 400 Q 100 600 300 800" stroke="#7a6e60" stroke-width="1" fill="none"/>
-        <path d="M 200 0 Q 400 150 350 400 Q 300 600 500 800" stroke="#7a6e60" stroke-width="0.8" fill="none"/>
-        <path d="M 350 0 Q 200 250 400 450 Q 550 600 400 800" stroke="#9e7c56" stroke-width="0.6" fill="none"/>
-        <path d="M 0 200 Q 150 300 0 500 Q -50 650 100 800" stroke="#7a6e60" stroke-width="0.5" fill="none"/>
-        <path d="M 600 100 Q 450 300 500 500 Q 550 700 400 800" stroke="#7a6e60" stroke-width="0.5" fill="none"/>
-        <circle cx="300" cy="400" r="120" stroke="#9e7c56" stroke-width="0.5" fill="none"/>
-        <circle cx="300" cy="400" r="80" stroke="#7a6e60" stroke-width="0.4" fill="none"/>
-      </svg>
-
-      <div class="hero-label">Handcrafted in small batches</div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-botanical" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <ellipse cx="300" cy="400" rx="200" ry="350" stroke="#7A6248" stroke-width="0.5"/>
+      <ellipse cx="300" cy="400" rx="120" ry="250" stroke="#7A6248" stroke-width="0.5"/>
+      <line x1="300" y1="50" x2="300" y2="750" stroke="#7A6248" stroke-width="0.5"/>
+      <line x1="100" y1="200" x2="500" y2="600" stroke="#7A6248" stroke-width="0.3"/>
+      <line x1="500" y1="200" x2="100" y2="600" stroke="#7A6248" stroke-width="0.3"/>
+      <circle cx="300" cy="400" r="30" stroke="#7A6248" stroke-width="0.5"/>
+      <path d="M200 150 Q250 200 300 150 Q350 100 400 150" stroke="#7A6248" stroke-width="0.5" fill="none"/>
+      <path d="M150 300 Q200 280 200 240 Q200 200 170 190" stroke="#7A6248" stroke-width="0.5" fill="none"/>
+      <path d="M450 300 Q400 280 400 240 Q400 200 430 190" stroke="#7A6248" stroke-width="0.5" fill="none"/>
+      <path d="M180 500 Q220 520 230 560 Q240 590 210 610" stroke="#7A6248" stroke-width="0.5" fill="none"/>
+      <path d="M420 500 Q380 520 370 560 Q360 590 390 610" stroke="#7A6248" stroke-width="0.5" fill="none"/>
+    </svg>
+    <div class="hero-circle">
+      <div class="hero-circle-inner">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="28" stroke="#B89A78" stroke-width="0.75"/>
+          <circle cx="30" cy="30" r="18" stroke="#B89A78" stroke-width="0.5"/>
+          <line x1="30" y1="2" x2="30" y2="58" stroke="#B89A78" stroke-width="0.5"/>
+          <line x1="2" y1="30" x2="58" y2="30" stroke="#B89A78" stroke-width="0.5"/>
+          <circle cx="30" cy="30" r="4" stroke="#7A6248" stroke-width="0.75"/>
+        </svg>
+        <p class="hero-circle-text">Integrating the whole self through intentional care</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="hero-scroll">
-      scroll
-      <span></span>
-    </div>
-  </section>
-
-  <!-- MARQUEE STRIP -->
-  <div class="strip" aria-hidden="true">
-    <div class="strip-inner">
-      <span>✦</span> Natural Fibres &nbsp;&nbsp; <span>✦</span> Slow Fashion &nbsp;&nbsp; <span>✦</span> Made to Order &nbsp;&nbsp; <span>✦</span> Zero Waste Atelier &nbsp;&nbsp; <span>✦</span> SS 2026 &nbsp;&nbsp; <span>✦</span> Natural Fibres &nbsp;&nbsp; <span>✦</span> Slow Fashion &nbsp;&nbsp; <span>✦</span> Made to Order &nbsp;&nbsp; <span>✦</span> Zero Waste Atelier &nbsp;&nbsp; <span>✦</span> SS 2026 &nbsp;&nbsp;
+<!-- ABOUT -->
+<section class="about" id="about">
+  <!-- LEFT: owner photo + accent ring -->
+  <div class="about-left">
+    <div class="owner-photo-wrap">
+      <!--
+        TO ADD YOUR PHOTO:
+        1. Save your photo as "owner-photo.jpg" in the same folder as this file
+        2. Delete the placeholder <div> below
+        3. Uncomment the <img> tag below it
+      -->
+      <div class="owner-photo-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="18" r="8" stroke="#B89A78" stroke-width="1.5"/>
+          <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#B89A78" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Owner / Founder Photo</span>
+        <span class="placeholder-note">Save your photo as owner-photo.jpg<br>in this folder, then swap this div for the img tag in the HTML</span>
+      </div>
+      <!-- <img src="owner-photo.jpg" alt="[Founder Name]" class="owner-photo"> -->
+      <div class="about-accent"></div>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <div class="about-aside">
-      <p class="section-tag">Our Story</p>
+  <!-- RIGHT: bio text -->
+  <div>
+    <div class="section-label">About the Founder</div>
+    <h2 class="section-title">A practice born from lived experience and deep inquiry</h2>
+    <div class="about-quote">"Healing is not the absence of pain — it is the integration of all that we are."</div>
+    <p class="section-body">
+      [Founder Name] is a certified holistic health practitioner and integrative medicine consultant with over a decade of experience bridging conventional wellness frameworks with ancient healing wisdom. Their work draws from nutritional therapy, somatic practice, herbal medicine, and depth psychology.
+    </p>
+    <br>
+    <p class="section-body">
+      Ether and Thread was founded on the belief that true wellness arises at the intersection of body, mind, and spirit — and that the most profound healing happens when we learn to follow the thread between our waking and deeper selves.
+    </p>
+    <div class="thread-decoration">
+      <div class="thread-line"></div>
+      <div class="thread-dot"></div>
+      <div class="thread-line"></div>
     </div>
-    <div class="about-body">
-      <h2>Clothing that exists between<br>the material and the immaterial.</h2>
-      <p>Ether and Thread was founded on the belief that what you wear is a conversation between your body and the world. We work exclusively with natural fibres — linen, silk, undyed wool — sourced from cooperatives we visit ourselves.</p>
-      <p>Our atelier operates in small, seasonal batches. Nothing is mass-produced. Every seam is considered. We believe in the slow accumulation of a wardrobe: fewer pieces, more meaning.</p>
-      <a href="#" class="btn">Learn More</a>
-    </div>
-  </section>
+    <a class="btn-secondary" href="#contact">Work with [Founder Name] &rarr;</a>
+  </div>
+</section>
 
-  <!-- COLLECTION GRID -->
-  <section class="collection">
-    <div class="collection-header">
-      <h2>The Vapour Series</h2>
-      <a href="#" class="btn">View All</a>
-    </div>
-
-    <div class="collection-grid">
-      <div class="card">
-        <div class="card-img"><div class="card-img-bg"></div></div>
-        <div class="card-body">
-          <p class="card-name">Cloud Linen Shift</p>
-          <p class="card-desc">Undyed — One size — £195</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img"><div class="card-img-bg"></div></div>
-        <div class="card-body">
-          <p class="card-name">Soft Wool Wrap Coat</p>
-          <p class="card-desc">Chalk &amp; Dust — Three sizes — £380</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img"><div class="card-img-bg"></div></div>
-        <div class="card-body">
-          <p class="card-name">Silk Thread Blouse</p>
-          <p class="card-desc">Mist &amp; Stone — Four sizes — £240</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section class="quote-section">
-    <blockquote>
-      "To dress is to choose what you carry — and what you leave behind."
-    </blockquote>
-    <cite>— Ether &amp; Thread, Founding Notes</cite>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
     <div>
-      <p class="footer-brand">Ether &amp; Thread</p>
-      <p>A slow fashion atelier working at the intersection of craft, material, and intention. Est. 2019.</p>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Pathways to integrated wellbeing</h2>
     </div>
-    <div>
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="#">Collection</a></li>
-        <li><a href="#">Atelier</a></li>
-        <li><a href="#">Journal</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+    <a class="btn-secondary" href="#contact">Book a consultation &rarr;</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="service-name">Integrative Health Consulting</div>
+      <p class="service-desc">A holistic assessment of your physical, emotional, and energetic health. We map the terrain of your wellbeing and co-create a personalized care pathway.</p>
+      <div class="service-price">90 min session &middot; from $180</div>
     </div>
-    <div>
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Newsletter</a></li>
-        <li><a href="#">Stockists</a></li>
-        <li><a href="#">Press Enquiries</a></li>
-      </ul>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="service-name">Nutritional Therapy</div>
+      <p class="service-desc">Functional nutrition approaches tailored to your unique biochemistry, lifestyle, and healing goals. Food as foundational medicine.</p>
+      <div class="service-price">60 min session &middot; from $130</div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Ether and Thread. All rights reserved.</span>
-      <span>Privacy · Terms · Sustainability Pledge</span>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </div>
+      <div class="service-name">Somatic &amp; Energy Work</div>
+      <p class="service-desc">Body-centered practices that help release stored tension, restore nervous system regulation, and reconnect you with your embodied intelligence.</p>
+      <div class="service-price">75 min session &middot; from $160</div>
     </div>
-  </footer>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+      </div>
+      <div class="service-name">Herbal Medicine Consultations</div>
+      <p class="service-desc">Plant-based protocols drawn from traditional herbal wisdom and modern phytotherapy research, formulated around your specific needs.</p>
+      <div class="service-price">60 min session &middot; from $120</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="service-name">Mind-Body Integration Coaching</div>
+      <p class="service-desc">Ongoing guidance at the intersection of psychology and physiology, helping you weave together the threads of unconscious patterns and conscious change.</p>
+      <div class="service-price">Monthly packages from $400</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      </div>
+      <div class="service-name">Immersive Retreats</div>
+      <p class="service-desc">Seasonal half-day and full-day retreat experiences combining breathwork, sound, plant medicine education, and deep restorative practices.</p>
+      <div class="service-price">Half-day from $240 &middot; Full-day from $420</div>
+    </div>
+  </div>
+</section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Client Stories</div>
+  <h2 class="section-title">Words from those who've walked this path</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <p class="testimonial-text">Working with Ether and Thread changed how I understood my own body. For the first time, I felt like my health was being seen as a whole — not just a list of symptoms to manage.</p>
+      <div class="testimonial-author">— M. Hartwell, Integrative Client</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <p class="testimonial-text">The nutritional therapy sessions gave me a completely new relationship with food. I came in exhausted and depleted. I left with a roadmap that actually made sense for my life.</p>
+      <div class="testimonial-author">— R. Torres, Nutrition Client</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <p class="testimonial-text">I didn't expect the emotional depth that came through the somatic work. There is a gentleness and precision here that I haven't found anywhere else. Truly transformative.</p>
+      <div class="testimonial-author">— J. Adeyemi, Somatic Client</div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="section-label">Upcoming Events</div>
+  <h2 class="section-title">Gather, practice, and go deeper</h2>
+  <div class="events-list">
+    <div class="event-item">
+      <div class="event-date-block"><div class="event-month">Jul</div><div class="event-day">12</div></div>
+      <div>
+        <div class="event-title">Summer Solstice Breathwork Journey</div>
+        <div class="event-meta">Saturday, 10am – 1pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Limited to 12 participants</div>
+      </div>
+      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Summer Solstice Breathwork">Register &rarr;</a>
+    </div>
+    <div class="event-item">
+      <div class="event-date-block"><div class="event-month">Jul</div><div class="event-day">24</div></div>
+      <div>
+        <div class="event-title">Introduction to Herbal Medicine — Free Workshop</div>
+        <div class="event-meta">Thursday, 6:30 – 8pm &nbsp;&middot;&nbsp; Virtual (Zoom) &nbsp;&middot;&nbsp; Open to all</div>
+      </div>
+      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Herbal Medicine Workshop">Save Your Spot &rarr;</a>
+    </div>
+    <div class="event-item">
+      <div class="event-date-block"><div class="event-month">Aug</div><div class="event-day">3</div></div>
+      <div>
+        <div class="event-title">The Integrated Body: A Full-Day Immersion Retreat</div>
+        <div class="event-meta">Sunday, 9am – 5pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Limited to 8 participants</div>
+      </div>
+      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Inquiry: Full-Day Immersion Retreat">Inquire &rarr;</a>
+    </div>
+    <div class="event-item">
+      <div class="event-date-block"><div class="event-month">Aug</div><div class="event-day">19</div></div>
+      <div>
+        <div class="event-title">Nervous System Reset: Sound &amp; Somatic Practice</div>
+        <div class="event-meta">Tuesday, 7 – 8:30pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Drop-in welcome</div>
+      </div>
+      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Nervous System Reset">Register &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources" id="resources">
+  <div class="section-label">Resources &amp; Reading</div>
+  <h2 class="section-title">Knowledge to support your path</h2>
+  <p class="section-body">Curated articles, practices, and perspectives on integrative health — from the science of the gut-brain axis to the wisdom of plant medicine.</p>
+  <div class="resources-grid">
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Nutrition</div>
+      <div class="resource-title">The Gut-Brain Connection: What Your Microbiome Wants You to Know</div>
+      <p class="resource-desc">Emerging research is reshaping how we understand mood, immunity, and cognition through the lens of the enteric nervous system.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Somatic Practice</div>
+      <div class="resource-title">How the Body Keeps the Score — and How We Help It Let Go</div>
+      <p class="resource-desc">A gentle introduction to somatic approaches and why working through the body can reach places that talk therapy sometimes cannot.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Herbal Medicine</div>
+      <div class="resource-title">Five Adaptogens for Stress Resilience — A Practical Guide</div>
+      <p class="resource-desc">From ashwagandha to holy basil, learn how adaptogenic plants can support your nervous system in a world that never quite slows down.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Mind-Body</div>
+      <div class="resource-title">Nervous System States: Understanding Polyvagal Theory</div>
+      <p class="resource-desc">An accessible look at how our autonomic nervous system shapes our perception of safety, connection, and capacity for healing.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Integrative Health</div>
+      <div class="resource-title">Beyond Symptom Management: What Integrative Medicine Looks Like</div>
+      <p class="resource-desc">A primer on the philosophy and practice of integrative medicine — and what to expect when you step outside conventional frameworks.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+    <a class="resource-card" href="#">
+      <div class="resource-tag">Ritual &amp; Practice</div>
+      <div class="resource-title">Morning Rituals for Regulation: A Simple Framework to Begin</div>
+      <p class="resource-desc">How ten intentional minutes at the start of your day can anchor the nervous system and create space for the rest of it to unfold.</p>
+      <div class="resource-arrow">Read Article</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <div class="section-label">Book a Session</div>
+    <h2 class="section-title">Begin with a conversation</h2>
+    <p class="section-body">Every journey starts with a single step. Reach out to schedule a free 20-minute discovery call, or book your first full session directly below.</p>
+    <div class="contact-divider"></div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Email</div>
+      <div class="contact-detail-value"><a href="mailto:etherandthread@gmail.com">etherandthread@gmail.com</a></div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Phone</div>
+      <div class="contact-detail-value">+1 (000) 000-0000</div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Sessions</div>
+      <div class="contact-detail-value">In person &amp; virtual available</div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Hours</div>
+      <div class="contact-detail-value">Mon–Fri, 9am – 6pm &nbsp;&middot;&nbsp; Sat by appointment</div>
+    </div>
+  </div>
+  <div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your name" id="form-name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com" id="form-email">
+      </div>
+      <div class="form-group">
+        <label>Service of Interest</label>
+        <select id="form-service">
+          <option value="">Select a service...</option>
+          <option>Integrative Health Consulting</option>
+          <option>Nutritional Therapy</option>
+          <option>Somatic &amp; Energy Work</option>
+          <option>Herbal Medicine Consultation</option>
+          <option>Mind-Body Integration Coaching</option>
+          <option>Immersive Retreat</option>
+          <option>Free Discovery Call</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us a little about what brings you here</label>
+        <textarea id="form-message" placeholder="Share as much or as little as you'd like..."></textarea>
+      </div>
+      <button class="btn-primary" onclick="handleSubmit()">Send Message</button>
+      <div class="confirmation" id="form-confirmation">
+        Thank you for reaching out. We'll be in touch within 1–2 business days to schedule your session.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <img src="logo.jpg" alt="Ether and Thread">
+    </div>
+    <div class="footer-motto">Following the thread that connects the conscious and unconscious</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Ether &amp; Thread. All rights reserved.</div>
+</footer>
+
+<script>
+function handleSubmit() {
+  const name = document.getElementById('form-name').value.trim();
+  const email = document.getElementById('form-email').value.trim();
+  const service = document.getElementById('form-service').value;
+  const message = document.getElementById('form-message').value.trim();
+
+  if (!name || !email) {
+    alert('Please fill in your name and email to send a message.');
+    return;
+  }
+
+  const subject = encodeURIComponent('New Inquiry' + (service ? ': ' + service : '') + ' — Ether & Thread');
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Service: ' + (service || 'Not specified') + '\n\n' +
+    'Message:\n' + (message || '(none)')
+  );
+
+  window.location.href = 'mailto:etherandthread@gmail.com?subject=' + subject + '&body=' + body;
+
+  document.getElementById('form-confirmation').style.display = 'block';
+  document.getElementById('form-name').value = '';
+  document.getElementById('form-email').value = '';
+  document.getElementById('form-service').value = '';
+  document.getElementById('form-message').value = '';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
