@@ -47,8 +47,8 @@
 
   body {
     font-family: 'Jost', sans-serif;
-    background: var(--warm-white);
-    color: var(--charcoal);
+    background: var(--navy);
+    color: var(--white);
     font-weight: 300;
     overflow-x: hidden;
   }
@@ -62,7 +62,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 3rem;
-    background: var(--warm-white);
+    background: var(--navy);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(184, 154, 120, 0.2);
   }
@@ -85,16 +85,16 @@
     font-size: 0.78rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .nav-links a:hover { color: var(--clay); }
+  .nav-links a:hover { color: var(--teal); }
 
   .nav-cta {
-    background: var(--charcoal) !important;
-    color: var(--cream) !important;
+    background: var(--navy) !important;
+    color: var(--white) !important;
     padding: 0.55rem 1.4rem;
     border-radius: 2px;
     font-size: 0.72rem !important;
@@ -102,10 +102,12 @@
     transition: background 0.3s !important;
   }
 
-  .nav-cta:hover { background: var(--bark) !important; color: var(--cream) !important; }
+  .nav-cta:hover { background: var(--name) !important; color: var(--white) !important; }
 
   /* HERO */
   .hero {
+    background: var(--silver);
+    color: var(--navy);
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -127,7 +129,7 @@
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--clay);
+    color: var(--navy);
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -139,7 +141,7 @@
     display: block;
     width: 2rem;
     height: 1px;
-    background: var(--clay);
+    background: var(--teal);
   }
 
   .hero h1 {
@@ -147,16 +149,16 @@
     font-size: clamp(2.8rem, 5vw, 4.2rem);
     font-weight: 300;
     line-height: 1.15;
-    color: var(--charcoal);
+    color: var(--white);
     margin-bottom: 1.5rem;
   }
 
-  .hero h1 em { font-style: italic; color: var(--bark); }
+  .hero h1 em { font-style: italic; color: var(--teal); }
 
   .hero-motto {
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--muted);
+    color: var(--navy);
     max-width: 38ch;
     margin-bottom: 2.5rem;
     font-weight: 300;
