@@ -9,24 +9,37 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #F5F0E8;
-    --parchment: #EDE5D4;
-    --bark: #7A6248;
-    --moss: #5A6645;
-    --clay: #A0684A;
-    --charcoal: #2E2C28;
-    --muted: #8C8070;
-    --warm-white: #FAF7F2;
-    --thread: #B89A78;
-    --sage: #8FA685;
+     --navy: #010f2e;
+     --teal: #018477;
+     --white: #fefefe;
+     --silver: #838387;
+     --orange: #fb7202;
+     --purple: #cf16c6;
+     --blue: #032062;
+
+     --warm-white: #fb7202;
+     --charcoal: #fb7202;
+
+     --bark: #838387;
+     --moss: #838387;
+     --clay: #838387;
+
+     --muted: #838387;
+     --thread: #fefefe;
+     --sage: #018477;
+
+     --cream: #010f2e;
+     --parchment: #010f2e;
+
+ 
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Jost', sans-serif;
-    background: var(--warm-white);
-    color: var(--charcoal);
+    background: var(--navy);
+    color: var(--white);
     font-weight: 300;
     overflow-x: hidden;
   }
@@ -40,13 +53,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 3rem;
-    background: rgba(250, 247, 242, 0.92);
+    background: var(--navy);
+    color: var(--white);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(184, 154, 120, 0.2);
+    border-bottom: 1px solid var(--navy);
+
   }
 
   .nav-logo img {
-    height: 54px;
+    height: 150px;
     width: auto;
     display: block;
     /* Replace logo.jpg in the same folder to update this */
@@ -63,16 +78,16 @@
     font-size: 0.78rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .nav-links a:hover { color: var(--clay); }
+  .nav-links a:hover { color: var(--teal); }
 
   .nav-cta {
-    background: var(--charcoal) !important;
-    color: var(--cream) !important;
+    background: var(--navy) !important;
+    color: var(--white) !important;
     padding: 0.55rem 1.4rem;
     border-radius: 2px;
     font-size: 0.72rem !important;
@@ -80,10 +95,12 @@
     transition: background 0.3s !important;
   }
 
-  .nav-cta:hover { background: var(--bark) !important; color: var(--cream) !important; }
+  .nav-cta:hover { background: var(--navy) !important; color: var(--teal) !important; }
 
   /* HERO */
   .hero {
+    background: var(--navy);
+    color: var(--silver);
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,10 +119,10 @@
   }
 
   .hero-eyebrow {
-    font-size: 0.72rem;
+    font-size: 1.20rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--clay);
+    color: var(--silver);
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -117,7 +134,7 @@
     display: block;
     width: 2rem;
     height: 1px;
-    background: var(--clay);
+    background: var(--white);
   }
 
   .hero h1 {
@@ -125,16 +142,16 @@
     font-size: clamp(2.8rem, 5vw, 4.2rem);
     font-weight: 300;
     line-height: 1.15;
-    color: var(--charcoal);
+    color: var(--silver);
     margin-bottom: 1.5rem;
   }
 
-  .hero h1 em { font-style: italic; color: var(--bark); }
+  .hero h1 em { font-style: italic; color: var(--teal); }
 
   .hero-motto {
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--muted);
+    color: var(--silver);
     max-width: 38ch;
     margin-bottom: 2.5rem;
     font-weight: 300;
@@ -148,8 +165,8 @@
   }
 
   .btn-primary {
-    background: var(--charcoal);
-    color: var(--cream);
+    background: var(--silver);
+    color: var(--navy);
     padding: 0.85rem 2.2rem;
     border-radius: 2px;
     font-family: 'Jost', sans-serif;
@@ -163,25 +180,25 @@
     display: inline-block;
   }
 
-  .btn-primary:hover { background: var(--bark); }
+  .btn-primary:hover { background: var(--teal); }
 
   .btn-secondary {
-    color: var(--bark);
+    color: var(--white);
     font-size: 0.78rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    border-bottom: 1px solid var(--thread);
+    border-bottom: 1px solid var(--silver);
     padding-bottom: 2px;
     transition: color 0.3s;
     display: inline-block;
   }
 
-  .btn-secondary:hover { color: var(--clay); }
+  .btn-secondary:hover { color: var(--teal); }
 
   .hero-right {
     position: relative;
-    background: var(--parchment);
+    background: var(--navy);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -200,7 +217,7 @@
     width: 340px;
     height: 340px;
     border-radius: 50%;
-    border: 1px solid var(--thread);
+    border: 1px solid var(--silver);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -212,8 +229,8 @@
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    background: var(--cream);
-    border: 1px solid rgba(184,154,120,0.3);
+    background: var(--navy);
+    border: 1px solid var(--silver);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -228,7 +245,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
     font-style: italic;
-    color: var(--bark);
+    color: var(--white);
     line-height: 1.5;
   }
 
@@ -239,7 +256,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--clay);
+    color: var(--white);
     margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
@@ -251,7 +268,7 @@
     display: block;
     width: 1.5rem;
     height: 1px;
-    background: var(--clay);
+    background: var(--white);
   }
 
   .section-title {
@@ -259,20 +276,20 @@
     font-size: clamp(2rem, 3.5vw, 2.8rem);
     font-weight: 300;
     line-height: 1.2;
-    color: var(--charcoal);
+    color: var(--silver);
     margin-bottom: 1.25rem;
   }
 
   .section-body {
     font-size: 1rem;
     line-height: 1.85;
-    color: var(--muted);
+    color: var(--silver);
     max-width: 55ch;
   }
 
   /* ABOUT */
   .about {
-    background: var(--parchment);
+    background: var(--navy);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
@@ -284,7 +301,7 @@
   /* Owner photo — replace owner-photo.jpg in the same folder */
   .owner-photo-wrap {
     position: relative;
-    width: 100%;
+    width: 50%;
   }
 
   .owner-photo {
@@ -293,12 +310,12 @@
     object-fit: cover;
     object-position: center top;
     display: block;
-    border: 1px solid rgba(184,154,120,0.25);
+    border: 1px solid var(--silver);
   }
 
   /* Shown when owner-photo.jpg is missing */
   .owner-photo-placeholder {
-    width: 100%;
+    width: 50%;
     aspect-ratio: 3/4;
     background: var(--cream);
     border: 1px dashed var(--thread);
@@ -332,7 +349,7 @@
     right: -1.5rem;
     width: 80px;
     height: 80px;
-    border: 1px solid var(--thread);
+    border: 1px solid var(--white);
     border-radius: 50%;
     opacity: 0.5;
     pointer-events: none;
@@ -343,7 +360,7 @@
     font-size: 1.4rem;
     font-style: italic;
     font-weight: 300;
-    color: var(--bark);
+    color: var(--teal);
     line-height: 1.6;
     border-left: 2px solid var(--thread);
     padding-left: 1.5rem;
@@ -366,7 +383,7 @@
   .thread-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--thread); opacity: 0.6; }
 
   /* SERVICES */
-  .services { background: var(--warm-white); }
+  .services { background: var(--navy); }
 
   .services-header {
     display: flex;
@@ -381,28 +398,28 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5px;
-    background: rgba(184,154,120,0.2);
-    border: 1px solid rgba(184,154,120,0.2);
+    background: var(--navy);
+    border: 1px solid var(--navy);
   }
 
   .service-card {
-    background: var(--warm-white);
+    background: var(--navy);
     padding: 2.5rem 2rem;
     transition: background 0.3s;
   }
 
-  .service-card:hover { background: var(--cream); }
+  .service-card:hover { background: var(--blue); }
 
   .service-icon {
     width: 44px;
     height: 44px;
-    border: 1px solid var(--thread);
+    border: 1px solid var(--silver);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    color: var(--bark);
+    color: var(--teal);
   }
 
   .service-icon svg { width: 20px; height: 20px; }
@@ -411,30 +428,30 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     font-weight: 500;
-    color: var(--charcoal);
+    color: var(--white);
     margin-bottom: 0.75rem;
   }
 
-  .service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--muted); }
+  .service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--silver); }
 
   .service-price {
     margin-top: 1.5rem;
     font-size: 0.78rem;
     letter-spacing: 0.08em;
-    color: var(--clay);
+    color: var(--white);
     font-weight: 400;
   }
 
   /* TESTIMONIALS */
   .testimonials {
-    background: var(--charcoal);
-    color: var(--cream);
+    background: var(--navy);
+    color: var(--orange);
     padding: 6rem 5rem;
   }
 
-  .testimonials .section-label { color: var(--thread); }
-  .testimonials .section-label::before { background: var(--thread); }
-  .testimonials .section-title { color: var(--cream); }
+  .testimonials .section-label { color: var(--white); }
+  .testimonials .section-label::before { background: var(--white); }
+  .testimonials .section-title { color: var(--silver); }
 
   .testimonials-grid {
     display: grid;
@@ -445,7 +462,7 @@
 
   .testimonial-card {
     padding: 2rem;
-    border: 1px solid rgba(184,154,120,0.25);
+    border: 1px solid var(--navy);
     position: relative;
   }
 
@@ -453,7 +470,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 4rem;
     line-height: 1;
-    color: var(--thread);
+    color: var(--teal);
     opacity: 0.4;
     position: absolute;
     top: 1rem;
@@ -465,7 +482,7 @@
     font-size: 1.05rem;
     font-style: italic;
     line-height: 1.75;
-    color: rgba(245,240,232,0.85);
+    color: var(--silver);
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -474,11 +491,11 @@
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--thread);
+    color: var(--teal);
   }
 
   /* EVENTS */
-  .events { background: var(--parchment); }
+  .events { background: var(--navy); }
 
   .events-list { margin-top: 3rem; display: flex; flex-direction: column; }
 
@@ -487,7 +504,7 @@
     grid-template-columns: 80px 1fr auto;
     align-items: center;
     padding: 1.75rem 0;
-    border-bottom: 1px solid rgba(184,154,120,0.25);
+    border-bottom: 1px solid var(--navy);
     gap: 2rem;
   }
 
@@ -532,6 +549,61 @@
 
   .event-link:hover { color: var(--clay); }
 
+
+
+/* COMMUNITY ACCESSS */
+.support {
+background: var(--parchment);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5rem;
+align-items: center;
+}
+
+.support-text {
+max-width: 55ch;
+}
+
+.support-qr {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+
+.support-qr img {
+width: 220px;
+height: 220px;
+object-fit: contain;
+display: block;
+}
+
+.qr-caption {
+margin-top: 1rem;
+font-size: 0.78rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(--bark);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+.support {
+grid-template-columns: 1fr;
+gap: 3rem;
+}
+
+.support-qr {
+order: 2;
+}
+}
+
+
+
+
+
+ 
   /* RESOURCES */
   .resources { background: var(--warm-white); }
 
@@ -716,7 +788,7 @@
 <!-- To replace the logo: swap out logo.jpg in the same folder with your own file and keep the filename the same -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="logo.jpg" alt="Ether and Thread">
+    <img src="et.jpg" alt="Ether and Thread">
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -731,7 +803,7 @@
 <section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-eyebrow">Holistic Health &amp; Integrative Medicine</div>
-    <h1>Where <em>body, mind,</em> and spirit find their thread</h1>
+    <h1>Where <em>body, mind, and spirit</em> find their thread</h1>
     <p class="hero-motto">Following the thread that connects the conscious and unconscious, providing holistic care rooted in nature, intention, and integrated healing.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#contact">Begin Your Journey</a>
@@ -755,11 +827,11 @@
     <div class="hero-circle">
       <div class="hero-circle-inner">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="30" cy="30" r="28" stroke="#B89A78" stroke-width="0.75"/>
-          <circle cx="30" cy="30" r="18" stroke="#B89A78" stroke-width="0.5"/>
-          <line x1="30" y1="2" x2="30" y2="58" stroke="#B89A78" stroke-width="0.5"/>
-          <line x1="2" y1="30" x2="58" y2="30" stroke="#B89A78" stroke-width="0.5"/>
-          <circle cx="30" cy="30" r="4" stroke="#7A6248" stroke-width="0.75"/>
+          <circle cx="30" cy="30" r="28" stroke=var(--silver) stroke-width="0.75"/>
+          <circle cx="30" cy="30" r="18" stroke=var(--silver) stroke-width="0.5"/>
+          <line x1="30" y1="2" x2="30" y2="58" stroke=var(--silver) stroke-width="0.5"/>
+          <line x1="2" y1="30" x2="58" y2="30" stroke=var(--silver) stroke-width="0.5"/>
+          <circle cx="30" cy="30" r="4" stroke=var(--silver) stroke-width="0.75"/>
         </svg>
         <p class="hero-circle-text">Integrating the whole self through intentional care</p>
       </div>
@@ -778,15 +850,7 @@
         2. Delete the placeholder <div> below
         3. Uncomment the <img> tag below it
       -->
-      <div class="owner-photo-placeholder">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="18" r="8" stroke="#B89A78" stroke-width="1.5"/>
-          <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#B89A78" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <span>Owner / Founder Photo</span>
-        <span class="placeholder-note">Save your photo as owner-photo.jpg<br>in this folder, then swap this div for the img tag in the HTML</span>
-      </div>
-      <!-- <img src="owner-photo.jpg" alt="[Founder Name]" class="owner-photo"> -->
+      <img src="owner-photo.jpg" alt="" class="owner-photo"> 
       <div class="about-accent"></div>
     </div>
   </div>
@@ -828,7 +892,7 @@
       </div>
       <div class="service-name">Integrative Health Consulting</div>
       <p class="service-desc">A holistic assessment of your physical, emotional, and energetic health. We map the terrain of your wellbeing and co-create a personalized care pathway.</p>
-      <div class="service-price">90 min session &middot; from $180</div>
+      <div class="service-price"></div>
     </div>
     <div class="service-card">
       <div class="service-icon">
@@ -836,7 +900,7 @@
       </div>
       <div class="service-name">Nutritional Therapy</div>
       <p class="service-desc">Functional nutrition approaches tailored to your unique biochemistry, lifestyle, and healing goals. Food as foundational medicine.</p>
-      <div class="service-price">60 min session &middot; from $130</div>
+      <div class="service-price"></div>
     </div>
     <div class="service-card">
       <div class="service-icon">
@@ -844,7 +908,7 @@
       </div>
       <div class="service-name">Somatic &amp; Energy Work</div>
       <p class="service-desc">Body-centered practices that help release stored tension, restore nervous system regulation, and reconnect you with your embodied intelligence.</p>
-      <div class="service-price">75 min session &middot; from $160</div>
+      <div class="service-price"></div>
     </div>
     <div class="service-card">
       <div class="service-icon">
@@ -852,7 +916,7 @@
       </div>
       <div class="service-name">Herbal Medicine Consultations</div>
       <p class="service-desc">Plant-based protocols drawn from traditional herbal wisdom and modern phytotherapy research, formulated around your specific needs.</p>
-      <div class="service-price">60 min session &middot; from $120</div>
+      <div class="service-price"></div>
     </div>
     <div class="service-card">
       <div class="service-icon">
@@ -860,7 +924,7 @@
       </div>
       <div class="service-name">Mind-Body Integration Coaching</div>
       <p class="service-desc">Ongoing guidance at the intersection of psychology and physiology, helping you weave together the threads of unconscious patterns and conscious change.</p>
-      <div class="service-price">Monthly packages from $400</div>
+      <div class="service-price"></div>
     </div>
     <div class="service-card">
       <div class="service-icon">
@@ -868,7 +932,7 @@
       </div>
       <div class="service-name">Immersive Retreats</div>
       <p class="service-desc">Seasonal half-day and full-day retreat experiences combining breathwork, sound, plant medicine education, and deep restorative practices.</p>
-      <div class="service-price">Half-day from $240 &middot; Full-day from $420</div>
+      <div class="service-price"></div>
     </div>
   </div>
 </section>
@@ -898,44 +962,39 @@
 
 <!-- EVENTS -->
 <section class="events" id="events">
-  <div class="section-label">Upcoming Events</div>
-  <h2 class="section-title">Gather, practice, and go deeper</h2>
+  <div class="section-label"></div>
+  <h2 class="section-title"></h2>
   <div class="events-list">
+    <!--  EACH EVENT LIKE THIS  -->
     <div class="event-item">
-      <div class="event-date-block"><div class="event-month">Jul</div><div class="event-day">12</div></div>
+      <div class="event-date-block"><div class="event-month"></div><div class="event-day"></div></div>
       <div>
-        <div class="event-title">Summer Solstice Breathwork Journey</div>
-        <div class="event-meta">Saturday, 10am – 1pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Limited to 12 participants</div>
+        <div class="event-title"></div>
+        <div class="event-meta"></div>
       </div>
-      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Summer Solstice Breathwork">Register &rarr;</a>
+      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Summer Solstice Breathwork"></a>
     </div>
-    <div class="event-item">
-      <div class="event-date-block"><div class="event-month">Jul</div><div class="event-day">24</div></div>
-      <div>
-        <div class="event-title">Introduction to Herbal Medicine — Free Workshop</div>
-        <div class="event-meta">Thursday, 6:30 – 8pm &nbsp;&middot;&nbsp; Virtual (Zoom) &nbsp;&middot;&nbsp; Open to all</div>
-      </div>
-      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Herbal Medicine Workshop">Save Your Spot &rarr;</a>
-    </div>
-    <div class="event-item">
-      <div class="event-date-block"><div class="event-month">Aug</div><div class="event-day">3</div></div>
-      <div>
-        <div class="event-title">The Integrated Body: A Full-Day Immersion Retreat</div>
-        <div class="event-meta">Sunday, 9am – 5pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Limited to 8 participants</div>
-      </div>
-      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Inquiry: Full-Day Immersion Retreat">Inquire &rarr;</a>
-    </div>
-    <div class="event-item">
-      <div class="event-date-block"><div class="event-month">Aug</div><div class="event-day">19</div></div>
-      <div>
-        <div class="event-title">Nervous System Reset: Sound &amp; Somatic Practice</div>
-        <div class="event-meta">Tuesday, 7 – 8:30pm &nbsp;&middot;&nbsp; In Person &nbsp;&middot;&nbsp; Drop-in welcome</div>
-      </div>
-      <a class="event-link" href="mailto:etherandthread@gmail.com?subject=Register: Nervous System Reset">Register &rarr;</a>
-    </div>
+    
   </div>
 </section>
 
+
+<!--  COMMUNITY ACCESS  -->
+<section class="support"> 
+ <div class="support-text"> 
+  <div class="section-label">Support</div> 
+  <h2 class="section-title">Support the Work</h2> 
+  <p class="section-body"> TBD TBD TBD in the paragraph. </p> 
+ </div>
+<div class="support-qr"> 
+ <img src="qr.jpg" alt="Venmo QR Code"> 
+ <p class="qr-caption">Scan to support us on Venmo @etherandthread</p> 
+</div> 
+</section>
+
+
+
+ 
 <!-- RESOURCES -->
 <section class="resources" id="resources">
   <div class="section-label">Resources &amp; Reading</div>
