@@ -554,65 +554,57 @@
 
 /* COMMUNITY ACCESSS */
 .support {
-background: var(--navy);
- color: var(--orange);
- padding: 6rem 5rem;
-/*display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 5rem;
-align-items: center;*/
+    background: var(--navy);
+    color: var(--white);
+    padding: 6rem 5rem;
 }
 
- .support .section-label { color: var(--white); }
-  .support .section-label::before { background: var(--white); }
-  .support .section-title { color: var(--silver); }
+.support .section-label {
+    color: var(--white);
+    margin-bottom: 3rem;
+}
 
- 
-   .support-grid {
+.support .section-label::before {
+    background: var(--white);
+}
+
+.support-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3.5rem;
-  }
- 
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
 
 .support-text {
-max-width: 55ch;
+    max-width: 55ch;
+}
+
+.support .section-title {
+    color: var(--silver);
+    margin-bottom: 1.25rem;
 }
 
 .support-qr {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .support-qr img {
-width: 220px;
-height: 220px;
-object-fit: contain;
-display: block;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    display: block;
 }
 
 .qr-caption {
-margin-top: 1rem;
-font-size: 0.78rem;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(--purple);
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-.support {
-grid-template-columns: 1fr;
-gap: 3rem;
-}
-
-.support-qr {
-order: 2;
-}
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver);
 }
 
 
@@ -998,17 +990,31 @@ order: 2;
 
 
 <!--  COMMUNITY ACCESS  -->
-<section class="support" id="support"> 
- <div class="section-label">Support</div>
- <h2 class="section-title">Words from those who've walked this path</h2>
- <div class="support-text"> 
-  <p class="section-body"> TBD TBD TBD in the paragraph. </p> 
- </div>
-<div class="support-qr"> 
- <img src="qr.jpg" alt="Venmo QR Code"> 
- <p class="qr-caption">Scan to support us on Venmo @etherandthread</p> 
-</div> 
+<section class="support" id="support">
+
+    <div class="section-label">Community Support</div>
+
+    <div class="support-grid">
+
+        <div class="support-text">
+            <div class="section-title">
+                Support Ether & Thread
+            </div>
+
+            <p class="section-body">
+                TBD TBD TBD
+            </p>
+        </div>
+
+        <div class="support-qr">
+            <img src="qr.jpg" alt="Venmo QR Code">
+            <div class="qr-caption">Support us on Venmo</div>
+        </div>
+
+    </div>
+
 </section>
+
 
 
 
