@@ -408,7 +408,7 @@
     transition: background 0.3s;
   }
 
-  .service-card:hover { background: var(--blue); }
+  .service-card:hover { background: var(--blue); transform: translateY(-3px);}
 
   .service-icon {
     width: 44px;
@@ -613,7 +613,7 @@
 
  
   /* RESOURCES */
-  .resources { background: var(--warm-white); }
+  .resources { background: var(--navy); }
 
   .resources-grid {
     display: grid;
@@ -623,7 +623,7 @@
   }
 
   .resource-card {
-    border: 1px solid rgba(184,154,120,0.25);
+    border: 1px solid var(--navy);
     padding: 1.75rem;
     transition: border-color 0.3s, transform 0.3s;
     cursor: pointer;
@@ -632,13 +632,13 @@
     color: inherit;
   }
 
-  .resource-card:hover { border-color: var(--thread); transform: translateY(-3px); }
+  .resource-card:hover { background: var(--blue); transform: translateY(-3px); }
 
   .resource-tag {
     font-size: 0.66rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--clay);
+    color: var(--silver);
     margin-bottom: 0.75rem;
   }
 
@@ -646,18 +646,18 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.15rem;
     font-weight: 500;
-    color: var(--charcoal);
+    color: var(--white);
     line-height: 1.35;
     margin-bottom: 0.75rem;
   }
 
-  .resource-desc { font-size: 0.84rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.25rem; }
+  .resource-desc { font-size: 0.84rem; line-height: 1.75; color: var(--orange); margin-bottom: 1.25rem; }
 
   .resource-arrow {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--bark);
+    color: var(--purple);
     display: flex;
     align-items: center;
     gap: 0.5rem;
