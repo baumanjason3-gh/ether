@@ -778,32 +778,38 @@
 
   .footer-copy { font-size: 0.72rem; color: var(--silver); letter-spacing: 0.05em; }
 
-  @media (max-width: 900px) {
+
+
+/* =========================================
+   MOBILE RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 900px) {
 
     /* NAVIGATION */
     nav {
-        padding: 0.75rem 1rem;
-        min-height: 70px;
+        padding: 0.5rem 1rem;
+        min-height: 65px;
     }
 
     .nav-logo img {
-        height: 70px;
+        height: 60px;
         width: auto;
     }
 
     .nav-links {
-        gap: 1rem;
+        gap: 0.75rem;
         flex-wrap: wrap;
         justify-content: flex-end;
     }
 
     .nav-links a {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
+        font-size: 0.62rem;
+        letter-spacing: 0.07em;
     }
 
     .nav-cta {
-        padding: 0.45rem 0.8rem;
+        padding: 0.4rem 0.7rem;
     }
 
 
@@ -829,24 +835,25 @@
     }
 
     .hero-eyebrow {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         letter-spacing: 0.14em;
     }
 
     .hero h1 {
-        font-size: clamp(2.4rem, 11vw, 3.5rem);
+        font-size: clamp(2.4rem, 10vw, 3.5rem);
         line-height: 1.1;
     }
 
     .hero-motto {
         font-size: 0.95rem;
         line-height: 1.7;
+        max-width: 100%;
     }
 
     .hero-actions {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.25rem;
+        gap: 1rem;
     }
 
     .btn-primary {
@@ -918,9 +925,19 @@
         max-width: 100%;
     }
 
+    .support-qr {
+        width: 100%;
+    }
+
     .support-qr img {
-        width: min(220px, 70vw);
+        width: min(220px, 65vw);
         height: auto;
+    }
+
+    .qr-caption {
+        max-width: 100%;
+        font-size: 0.7rem;
+        line-height: 1.5;
     }
 
 
@@ -937,6 +954,7 @@
     .resource-card img {
         width: 100%;
         height: auto;
+        display: block;
     }
 
 
@@ -948,6 +966,13 @@
 
     .contact-form {
         margin-top: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        box-sizing: border-box;
+        width: 100%;
     }
 
 
@@ -969,31 +994,65 @@
     .footer-links a {
         font-size: 0.65rem;
     }
-    }
-    @media (max-width: 600px) {
+}
 
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    /* NAV */
     nav {
-        padding: 0.5rem 0.75rem;
+        padding: 0.4rem 0.75rem;
+        min-height: 60px;
     }
 
     .nav-logo img {
-        height: 55px;
+        height: 50px;
     }
 
     .nav-links {
-        gap: 0.6rem;
+        gap: 0.5rem;
     }
 
     .nav-links a {
-        font-size: 0.58rem;
+        font-size: 0.55rem;
+        letter-spacing: 0.05em;
     }
 
+    .nav-cta {
+        padding: 0.35rem 0.55rem;
+    }
+
+
+    /* HERO */
     .hero-left {
         padding: 4.5rem 1rem 3rem;
     }
 
+    .hero-eyebrow {
+        font-size: 0.72rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.2rem, 12vw, 3rem);
+    }
+
+    .hero-motto {
+        font-size: 0.9rem;
+    }
+
+
+    /* GENERAL */
     section {
         padding: 3.5rem 1rem;
+    }
+
+    .section-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
     }
 
     .section-title {
@@ -1002,10 +1061,47 @@
 
     .section-body {
         font-size: 0.92rem;
+        line-height: 1.75;
     }
 
-    .services-grid,
-    .testimonials-grid,
+
+    /* ABOUT */
+    .about-quote {
+        font-size: 1.1rem;
+    }
+
+
+    /* SERVICES */
+    .service-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+
+    /* TESTIMONIALS */
+    .testimonials {
+        padding: 3.5rem 1rem;
+    }
+
+    .testimonial-card {
+        padding: 1.25rem;
+    }
+
+
+    /* SUPPORT */
+    .support {
+        padding: 3.5rem 1rem;
+    }
+
+    .support-grid {
+        gap: 2rem;
+    }
+
+    .support-qr img {
+        width: 180px;
+    }
+
+
+    /* RESOURCES */
     .resources-grid {
         gap: 1rem;
     }
@@ -1014,18 +1110,32 @@
         padding: 1rem;
     }
 
-    .support {
-        padding: 3.5rem 1rem;
+    .resource-card img {
+        width: 100%;
+        height: auto;
     }
 
-    .support-qr img {
-        width: 180px;
+
+    /* CONTACT */
+    .contact {
+        gap: 2rem;
     }
 
+
+    /* FOOTER */
     footer {
         padding: 2rem 1rem;
     }
+
+    .footer-logo img {
+        height: 70px;
     }
+}
+
+ 
+
+
+ 
  
 </style>
 </head>
