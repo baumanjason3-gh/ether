@@ -780,6 +780,7 @@
 
 
 
+
 /* =========================================
    HAMBURGER MENU
    ========================================= */
@@ -808,29 +809,30 @@
 
 
 /* =========================================
-   MOBILE NAVIGATION
+   MOBILE — ORIGINAL STYLING + HAMBURGER
    ========================================= */
 
 @media (max-width: 900px) {
 
+    /* NAV */
     nav {
-        padding: 0.5rem 1rem;
-        min-height: 65px;
+        padding: 0.75rem 1rem;
+        min-height: 70px;
     }
 
     .nav-logo img {
-        height: 60px;
+        height: 70px;
         width: auto;
     }
 
-    /* Show hamburger */
+    /* HAMBURGER */
     .nav-toggle {
         display: flex;
         position: relative;
         z-index: 102;
     }
 
-    /* Hide desktop-style navigation */
+    /* MOBILE MENU */
     .nav-links {
         position: absolute;
         top: 100%;
@@ -847,7 +849,6 @@
         background: var(--navy);
         border-top: 1px solid rgba(254, 254, 254, 0.1);
 
-        /* Hidden by default */
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
@@ -858,7 +859,6 @@
             visibility 0.25s ease;
     }
 
-    /* Open menu */
     .nav-links.active {
         opacity: 1;
         visibility: visible;
@@ -884,8 +884,7 @@
         padding: 0.6rem 1.5rem !important;
     }
 
-
-    /* Hamburger animation */
+    /* HAMBURGER ANIMATION */
     .nav-toggle.active span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
@@ -897,25 +896,229 @@
     .nav-toggle.active span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
     }
+
+
+    /* HERO — YOUR ORIGINAL MOBILE SETTINGS */
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 4rem;
+    }
+
+    .hero-right {
+        display: none;
+    }
+
+    .hero-left {
+        padding: 5rem 1.25rem 4rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.4rem, 11vw, 3.5rem);
+        line-height: 1.1;
+    }
+
+    .hero-motto {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .btn-primary {
+        padding: 0.9rem 1.5rem;
+    }
+
+
+    /* ABOUT */
+    .about {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .owner-photo-wrap {
+        width: 100%;
+    }
+
+    .owner-photo-placeholder {
+        width: 100%;
+    }
+
+    .about-quote {
+        font-size: 1.2rem;
+        padding-left: 1rem;
+    }
+
+
+    /* SERVICES */
+    .services-header {
+        margin-bottom: 2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+
+
+    /* TESTIMONIALS */
+    .testimonials {
+        padding: 4rem 1.25rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+
+    /* SUPPORT */
+    .support {
+        padding: 4rem 1.25rem;
+    }
+
+    .support-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .support-text {
+        max-width: 100%;
+    }
+
+    .support-qr img {
+        width: min(220px, 70vw);
+        height: auto;
+    }
+
+
+    /* RESOURCES */
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .resource-card {
+        padding: 1.25rem;
+    }
+
+    .resource-card img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    /* CONTACT */
+    .contact {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .contact-form {
+        margin-top: 1.5rem;
+    }
+
+
+    /* FOOTER */
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2.5rem 1.25rem;
+    }
+
+    .footer-logo img {
+        height: 80px;
+    }
+
+    .footer-links {
+        gap: 1rem 1.5rem;
+    }
+
+    .footer-links a {
+        font-size: 0.65rem;
+    }
 }
 
 
-/* Smaller phones */
+/* SMALL PHONES — YOUR ORIGINAL SETTINGS */
 @media (max-width: 600px) {
 
     nav {
-        padding: 0.4rem 0.75rem;
-        min-height: 60px;
+        padding: 0.5rem 0.75rem;
     }
 
     .nav-logo img {
-        height: 50px;
+        height: 55px;
+    }
+
+    .nav-links {
+        gap: 0.6rem;
     }
 
     .nav-links a {
-        font-size: 0.7rem;
+        font-size: 0.58rem;
+    }
+
+    .hero-left {
+        padding: 4.5rem 1rem 3rem;
+    }
+
+    section {
+        padding: 3.5rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-body {
+        font-size: 0.92rem;
+    }
+
+    .services-grid,
+    .testimonials-grid,
+    .resources-grid {
+        gap: 1rem;
+    }
+
+    .resource-card {
+        padding: 1rem;
+    }
+
+    .support {
+        padding: 3.5rem 1rem;
+    }
+
+    .support-qr img {
+        width: 180px;
+    }
+
+    footer {
+        padding: 2rem 1rem;
     }
 }
+
+
+
+
+ 
 
 
 
