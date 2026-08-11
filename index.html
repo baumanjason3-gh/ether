@@ -1144,17 +1144,28 @@
 <!-- NAV -->
 <!-- To replace the logo: swap out logo.jpg in the same folder with your own file and keep the filename the same -->
 <nav>
-  <a href="#home" class="nav-logo">
-    <img src="et.jpg" alt="Ether and Thread">
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#support">Support</a></li>
-    <li><a href="#resources">Resources</a></li>
-    <li><a href="#contact" class="nav-cta">Book a Session</a></li>
-  </ul>
+    <div class="nav-logo">
+        <a href="#home">
+            <img src="logo.jpg" alt="Ether & Thread">
+        </a>
+    </div>
+
+    <!-- Desktop / mobile navigation links -->
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger button -->
+    <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </nav>
 
 <!-- HERO -->
